@@ -7,8 +7,8 @@ APP_IMAGE="@SLIC3R_APP_KEY@_ubu64.AppImage"
 wget ${APPIMAGETOOLURL} -O ../appimagetool.AppImage
 chmod +x ../appimagetool.AppImage
 
-sed -i -e 's#/usr#././#g' bin/@SLIC3R_APP_CMD@
-mv @SLIC3R_APP_CMD@ AppRun
+sed -i -e 's#/usr#././#g' bin/@SLIC3R_APP_NAME@
+mv @SLIC3R_APP_NAME@ AppRun
 chmod +x AppRun
 
 cp resources/icons/@SLIC3R_APP_KEY@_192px.png @SLIC3R_APP_KEY@.png
