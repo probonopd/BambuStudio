@@ -35,14 +35,14 @@ echo -n "[9/9] Generating Linux app..."
 
     # copy Resources
     cp -Rf ../resources package/resources
-    cp -f src/@SLIC3R_APP_CMD@ package/bin/@SLIC3R_APP_CMD@
+    cp -f src/@SLIC3R_APP_NAME@ package/bin/@SLIC3R_APP_NAME@
     # remove unneeded po from resources
-    find package/resources/localization -name "*.po" -type f -delete
+    find package/resources/localization -name "*.po" -type f -delete || true
 
     # create bin
-    echo -e '#!/bin/bash\nDIR=$(readlink -f "$0" | xargs dirname)\nexport LD_LIBRARY_PATH="$DIR/bin"\nexec "$DIR/bin/@SLIC3R_APP_CMD@" "$@"' >@SLIC3R_APP_CMD@
-    chmod ug+x @SLIC3R_APP_CMD@
-    cp -f @SLIC3R_APP_CMD@ package/@SLIC3R_APP_CMD@
+    echo -e '#!/bin/bash\nDIR=$(readlink -f "$0" | xargs dirname)\nexport LD_LIBRARY_PATH="$DIR/bin"\nexec "$DIR/bin/@SLIC3R_APP_NAME@" "$@"' >@SLIC3R_APP_NAME@
+    chmod ug+x @SLIC3R_APP_NAME@
+    cp -f @SLIC3R_APP_NAME@ package/@SLIC3R_APP_NAME@
     pushd package
     tar -cvf ../@SLIC3R_APP_KEY@.tar .  &>/dev/null
     popd
