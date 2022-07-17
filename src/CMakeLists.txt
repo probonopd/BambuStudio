@@ -110,6 +110,10 @@ else ()
     add_executable(BambuStudio BambuStudio.cpp BambuStudio.hpp)
 endif ()
 
+if (NOT WIN32 AND NOT APPLE)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platform/unix/BuildLinuxImage.sh.in ${CMAKE_CURRENT_BINARY_DIR}/BuildLinuxImage.sh @ONLY)
+endif ()
+
 if (MINGW)
     target_link_options(BambuStudio PUBLIC "-Wl,-allow-multiple-definition")
     set_target_properties(BambuStudio PROPERTIES PREFIX "")
